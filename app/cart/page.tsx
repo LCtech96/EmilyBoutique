@@ -5,14 +5,11 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { useCartStore } from '@/store/cartStore'
 import NavigationBar from '@/components/NavigationBar'
-import AdminBanner from '@/components/AdminBanner'
 import HamburgerMenu from '@/components/HamburgerMenu'
-import { useAuthStore } from '@/store/authStore'
 import { FiTrash2, FiMinus, FiPlus, FiArrowRight } from 'react-icons/fi'
 
 export default function CartPage() {
   const { items, updateQuantity, removeItem, updateItem, getTotal, clearCart } = useCartStore()
-  const { isAdmin } = useAuthStore()
   const router = useRouter()
   const [showCheckout, setShowCheckout] = useState(false)
   const [shippingMethod, setShippingMethod] = useState('')
@@ -39,9 +36,7 @@ export default function CartPage() {
 
   if (showCheckout) {
     return (
-      <div className={`min-h-screen ${isAdmin ? 'bg-red-50' : 'bg-gradient-to-b from-pink-50 to-pink-100'}`}>
-        <AdminBanner />
-        
+      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-pink-100">
         <main className="pb-24 pt-12 px-4">
           <h1 className="text-3xl font-bold mb-6">Checkout</h1>
 
@@ -55,9 +50,7 @@ export default function CartPage() {
                   onClick={() => setShippingMethod(method)}
                   className={`w-full p-4 rounded-lg border-2 text-left ${
                     shippingMethod === method
-                      ? isAdmin
-                        ? 'border-red-500 bg-red-50'
-                        : 'border-pink-500 bg-pink-50'
+                      ? 'border-pink-500 bg-pink-50'
                       : 'border-gray-300 bg-white'
                   }`}
                 >
@@ -77,9 +70,7 @@ export default function CartPage() {
                   onClick={() => setPaymentMethod(method)}
                   className={`w-full p-4 rounded-lg border-2 text-left ${
                     paymentMethod === method
-                      ? isAdmin
-                        ? 'border-red-500 bg-red-50'
-                        : 'border-pink-500 bg-pink-50'
+                      ? 'border-pink-500 bg-pink-50'
                       : 'border-gray-300 bg-white'
                   }`}
                 >
@@ -110,9 +101,7 @@ export default function CartPage() {
           {/* Complete Order Button */}
           <button
             onClick={handleCompleteOrder}
-            className={`w-full py-4 rounded-2xl font-semibold text-white ${
-              isAdmin ? 'bg-red-500' : 'bg-pink-500'
-            }`}
+            className="w-full py-4 rounded-2xl font-semibold text-white bg-pink-500"
           >
             Completa Ordine
           </button>
@@ -131,8 +120,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className={`min-h-screen ${isAdmin ? 'bg-red-50' : 'bg-gradient-to-b from-pink-50 to-pink-100'}`}>
-      <AdminBanner />
+    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-pink-100">
       <HamburgerMenu />
       
       <main className="pb-24 pt-12 px-4">
@@ -143,9 +131,7 @@ export default function CartPage() {
             <p className="text-gray-500 mb-4">Il tuo carrello è vuoto</p>
             <button
               onClick={() => router.push('/')}
-              className={`px-6 py-3 rounded-lg font-semibold text-white ${
-                isAdmin ? 'bg-red-500' : 'bg-pink-500'
-              }`}
+              className="px-6 py-3 rounded-lg font-semibold text-white bg-pink-500"
             >
               Continua lo Shopping
             </button>
@@ -220,9 +206,7 @@ export default function CartPage() {
               
               <button
                 onClick={handleCheckout}
-                className={`w-full py-4 rounded-2xl font-semibold text-white flex items-center justify-center gap-2 ${
-                  isAdmin ? 'bg-red-500' : 'bg-pink-500'
-                }`}
+                className="w-full py-4 rounded-2xl font-semibold text-white flex items-center justify-center gap-2 bg-pink-500"
               >
                 Procedi al Checkout
                 <FiArrowRight size={20} />

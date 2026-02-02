@@ -6,9 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { supabase } from '@/lib/supabase'
 import NavigationBar from '@/components/NavigationBar'
-import AdminBanner from '@/components/AdminBanner'
 import HamburgerMenu from '@/components/HamburgerMenu'
-import { useAuthStore } from '@/store/authStore'
 
 interface Product {
   id: string
@@ -40,7 +38,6 @@ const categoryMap: Record<string, string> = {
 export default function CategoryPage() {
   const params = useParams()
   const { slug } = params
-  const { isAdmin } = useAuthStore()
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -72,8 +69,7 @@ export default function CategoryPage() {
   const categoryName = categoryMap[slug as string] || slug
 
   return (
-    <div className={`min-h-screen ${isAdmin ? 'bg-red-50' : 'bg-gradient-to-b from-pink-50 to-pink-100'}`}>
-      <AdminBanner />
+    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-pink-100">
       <HamburgerMenu />
       
       <main className="pb-24 pt-12 px-4">

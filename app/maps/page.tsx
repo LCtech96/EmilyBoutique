@@ -1,18 +1,14 @@
 'use client'
 
 import NavigationBar from '@/components/NavigationBar'
-import AdminBanner from '@/components/AdminBanner'
 import HamburgerMenu from '@/components/HamburgerMenu'
-import { useAuthStore } from '@/store/authStore'
 import { FiMapPin } from 'react-icons/fi'
 
 export default function MapsPage() {
-  const { isAdmin } = useAuthStore()
   const mapUrl = 'https://maps.app.goo.gl/wXRVdW3oGvSFnTj37'
 
   return (
-    <div className={`min-h-screen ${isAdmin ? 'bg-red-50' : 'bg-gradient-to-b from-pink-50 to-pink-100'}`}>
-      <AdminBanner />
+    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-pink-100">
       <HamburgerMenu />
       
       <main className="pb-24 pt-12 px-4">
@@ -32,9 +28,7 @@ export default function MapsPage() {
             href={mapUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`w-full py-4 rounded-2xl font-semibold text-white flex items-center justify-center gap-2 ${
-              isAdmin ? 'bg-red-500' : 'bg-pink-500'
-            }`}
+            className="w-full py-4 rounded-2xl font-semibold text-white flex items-center justify-center gap-2 bg-pink-500"
           >
             <FiMapPin size={20} />
             Vieni a Trovarci

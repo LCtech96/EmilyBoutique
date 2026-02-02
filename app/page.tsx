@@ -5,9 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import NavigationBar from '@/components/NavigationBar'
-import AdminBanner from '@/components/AdminBanner'
 import HamburgerMenu from '@/components/HamburgerMenu'
-import { useAuthStore } from '@/store/authStore'
 
 interface Product {
   id: string
@@ -25,7 +23,6 @@ export default function Home() {
   const [sponsors, setSponsors] = useState<string[]>([])
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
-  const { isAdmin } = useAuthStore()
 
   useEffect(() => {
     loadData()
@@ -85,8 +82,7 @@ export default function Home() {
   }
 
   return (
-    <div className={`min-h-screen ${isAdmin ? 'bg-red-50' : 'bg-gradient-to-b from-pink-50 to-pink-100'}`}>
-      <AdminBanner />
+    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-pink-100">
       <HamburgerMenu />
       
       <main className="pb-24 pt-12">

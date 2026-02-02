@@ -1,16 +1,11 @@
 'use client'
 
 import NavigationBar from '@/components/NavigationBar'
-import AdminBanner from '@/components/AdminBanner'
 import HamburgerMenu from '@/components/HamburgerMenu'
-import { useAuthStore } from '@/store/authStore'
 
 export default function AboutPage() {
-  const { isAdmin } = useAuthStore()
-
   return (
-    <div className={`min-h-screen ${isAdmin ? 'bg-red-50' : 'bg-gradient-to-b from-pink-50 to-pink-100'}`}>
-      <AdminBanner />
+    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-pink-100">
       <HamburgerMenu />
       
       <main className="pb-24 pt-12 px-4">

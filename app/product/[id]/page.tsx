@@ -11,9 +11,7 @@ import 'swiper/css/pagination'
 import { supabase } from '@/lib/supabase'
 import { useCartStore } from '@/store/cartStore'
 import NavigationBar from '@/components/NavigationBar'
-import AdminBanner from '@/components/AdminBanner'
 import HamburgerMenu from '@/components/HamburgerMenu'
-import { useAuthStore } from '@/store/authStore'
 import { FiShoppingCart, FiArrowLeft } from 'react-icons/fi'
 
 interface Product {
@@ -37,7 +35,6 @@ export default function ProductPage() {
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(true)
   const { addItem } = useCartStore()
-  const { isAdmin } = useAuthStore()
 
   useEffect(() => {
     if (id) {
@@ -89,8 +86,7 @@ export default function ProductPage() {
 
   if (loading) {
     return (
-      <div className={`min-h-screen ${isAdmin ? 'bg-red-50' : 'bg-gradient-to-b from-pink-50 to-pink-100'}`}>
-        <AdminBanner />
+      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-pink-100">
         <div className="flex items-center justify-center h-screen">
           <div className="text-center">Caricamento...</div>
         </div>
@@ -101,8 +97,7 @@ export default function ProductPage() {
 
   if (!product) {
     return (
-      <div className={`min-h-screen ${isAdmin ? 'bg-red-50' : 'bg-gradient-to-b from-pink-50 to-pink-100'}`}>
-        <AdminBanner />
+      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-pink-100">
         <div className="flex items-center justify-center h-screen">
           <div className="text-center">
             <p className="mb-4">Prodotto non trovato</p>
@@ -120,8 +115,7 @@ export default function ProductPage() {
   }
 
   return (
-    <div className={`min-h-screen ${isAdmin ? 'bg-red-50' : 'bg-gradient-to-b from-pink-50 to-pink-100'}`}>
-      <AdminBanner />
+    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-pink-100">
       <HamburgerMenu />
       
       <main className="pb-24">
@@ -181,9 +175,7 @@ export default function ProductPage() {
                     onClick={() => setSelectedSize(size)}
                     className={`px-4 py-2 rounded-lg border-2 transition-all ${
                       selectedSize === size
-                        ? isAdmin
-                          ? 'bg-red-500 text-white border-red-500'
-                          : 'bg-pink-500 text-white border-pink-500'
+                        ? 'bg-pink-500 text-white border-pink-500'
                         : 'bg-white border-gray-300'
                     }`}
                   >
@@ -205,9 +197,7 @@ export default function ProductPage() {
                     onClick={() => setSelectedColor(color)}
                     className={`px-4 py-2 rounded-lg border-2 transition-all ${
                       selectedColor === color
-                        ? isAdmin
-                          ? 'bg-red-500 text-white border-red-500'
-                          : 'bg-pink-500 text-white border-pink-500'
+                        ? 'bg-pink-500 text-white border-pink-500'
                         : 'bg-white border-gray-300'
                     }`}
                   >
@@ -241,9 +231,7 @@ export default function ProductPage() {
           {/* Add to Cart Button */}
           <button
             onClick={handleAddToCart}
-            className={`w-full py-4 rounded-2xl font-semibold text-white flex items-center justify-center gap-2 ${
-              isAdmin ? 'bg-red-500' : 'bg-pink-500'
-            }`}
+            className="w-full py-4 rounded-2xl font-semibold text-white flex items-center justify-center gap-2 bg-pink-500"
           >
             <FiShoppingCart size={20} />
             Aggiungi al Carrello

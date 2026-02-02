@@ -11,6 +11,9 @@ export default function NavigationBar() {
   const { items } = useCartStore()
   const { isAdmin } = useAuthStore()
   const cartCount = items.reduce((sum, item) => sum + item.quantity, 0)
+  
+  // Determina se siamo nell'area admin basandoci sul pathname
+  const isAdminArea = pathname?.startsWith('/admin')
 
   const navItems = [
     { href: '/', icon: FiHome, label: 'Home' },
@@ -19,7 +22,7 @@ export default function NavigationBar() {
   ]
 
   return (
-    <nav className={`ios-nav-bar ${isAdmin ? 'admin' : ''}`}>
+    <nav className={`ios-nav-bar ${isAdminArea && isAdmin ? 'admin' : ''}`}>
       <div className="flex justify-around items-center max-w-md mx-auto">
         {navItems.map((item) => {
           const Icon = item.icon
@@ -31,10 +34,10 @@ export default function NavigationBar() {
               href={item.href}
               className={`flex flex-col items-center justify-center gap-1 px-4 py-2 rounded-xl transition-all ${
                 isActive
-                  ? isAdmin
+                  ? isAdminArea && isAdmin
                     ? 'text-white bg-red-600/30'
                     : 'text-pink-600 bg-pink-200/50'
-                  : isAdmin
+                  : isAdminArea && isAdmin
                   ? 'text-red-900'
                   : 'text-gray-700'
               }`}
@@ -44,7 +47,7 @@ export default function NavigationBar() {
                 {item.badge && item.badge > 0 && (
                   <span
                     className={`absolute -top-2 -right-2 min-w-[20px] h-5 px-1.5 rounded-full text-xs font-semibold flex items-center justify-center ${
-                      isAdmin
+                      isAdminArea && isAdmin
                         ? 'bg-white text-red-600'
                         : 'bg-pink-500 text-white'
                     }`}
