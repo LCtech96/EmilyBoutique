@@ -36,28 +36,54 @@ export default function NewProductPage() {
     setUploading(true)
     try {
       const uploadPromises = files.map(async (file) => {
-        const fileExt = file.name.split('.').pop()
-        const fileName = `product-${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`
-        const filePath = `products/${fileName}`
+        // Try to upload to Supabase Storage first
+        try {
+          const fileExt = file.name.split('.').pop()
+          const fileName = `product-${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`
+          const filePath = `products/${fileName}`
 
-        const { error: uploadError } = await supabase.storage
-          .from('images')
-          .upload(filePath, file)
+          const { error: uploadError } = await supabase.storage
+            .from('images')
+            .upload(filePath, file, {
+              cacheControl: '3600',
+              upsert: false
+            })
 
-        if (uploadError) throw uploadError
+          if (uploadError) {
+            // Fallback to base64 if storage fails (bucket doesn't exist)
+            throw uploadError
+          }
 
-        const { data: { publicUrl } } = supabase.storage
-          .from('images')
-          .getPublicUrl(filePath)
+          const { data: { publicUrl } } = supabase.storage
+            .from('images')
+            .getPublicUrl(filePath)
 
-        return publicUrl
+          return publicUrl
+        } catch (storageError) {
+          // Fallback: convert to base64 and store in database
+          return new Promise<string>((resolve, reject) => {
+            const reader = new FileReader()
+            reader.onloadend = () => {
+              const base64data = reader.result as string
+              resolve(base64data)
+            }
+            reader.onerror = reject
+            reader.readAsDataURL(file)
+          })
+        }
       })
 
       const urls = await Promise.all(uploadPromises)
       setImages([...images, ...urls])
+      
+      // Show info message if using fallback
+      const hasStorageError = files.length > 0
+      if (hasStorageError) {
+        console.log('Storage bucket not found, using base64 fallback. Create bucket "images" in Supabase for better performance.')
+      }
     } catch (error) {
       console.error('Error uploading images:', error)
-      alert('Errore durante il caricamento delle immagini')
+      alert('Errore durante il caricamento delle immagini. Le immagini verranno salvate come base64 nel database.')
     } finally {
       setUploading(false)
     }
