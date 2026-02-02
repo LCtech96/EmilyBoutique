@@ -34,7 +34,7 @@ export default function AdminLogin() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:border-pink-500 focus:outline-none"
+              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:border-red-500 focus:outline-none"
               required
             />
           </div>
@@ -45,7 +45,7 @@ export default function AdminLogin() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:border-pink-500 focus:outline-none"
+              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:border-red-500 focus:outline-none"
               required
             />
           </div>

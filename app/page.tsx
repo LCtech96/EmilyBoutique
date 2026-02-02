@@ -90,17 +90,6 @@ export default function Home() {
       <HamburgerMenu />
       
       <main className="pb-24 pt-12">
-        {isAdmin && (
-          <div className="px-4 mb-4">
-            <Link
-              href="/admin"
-              className="inline-block px-4 py-2 bg-red-500 text-white rounded-lg font-semibold"
-            >
-              Pannello Admin
-            </Link>
-          </div>
-        )}
-        
         {/* Hero Image */}
         <div className="relative w-full h-64 md:h-96 mb-6 bg-gradient-to-br from-pink-200 to-pink-300 rounded-2xl overflow-hidden">
           {heroImage && heroImage !== '/hero.jpg' ? (
