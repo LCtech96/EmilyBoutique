@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import NavigationBar from '@/components/NavigationBar'
 import AdminBanner from '@/components/AdminBanner'
+import HamburgerMenu from '@/components/HamburgerMenu'
 import { useAuthStore } from '@/store/authStore'
 
 interface Product {
@@ -86,6 +87,7 @@ export default function Home() {
   return (
     <div className={`min-h-screen ${isAdmin ? 'bg-red-50' : 'bg-gradient-to-b from-pink-50 to-pink-100'}`}>
       <AdminBanner />
+      <HamburgerMenu />
       
       <main className="pb-24 pt-12">
         {isAdmin && (
@@ -209,22 +211,25 @@ export default function Home() {
             </div>
             
             <div>
-              <h3 className="font-bold text-lg mb-3">Per Lei</h3>
+              <h3 className="font-bold text-lg mb-3">Abbigliamento</h3>
               <div className="flex flex-wrap gap-4">
-                <Link href="/category/accessori-donna" className="text-gray-700 hover:text-pink-600">
-                  Accessori Donna
+                <Link href="/category/abiti-coordinati" className="text-gray-700 hover:text-pink-600">
+                  Abiti/Coordinati
                 </Link>
-                <Link href="/category/jeans-donna" className="text-gray-700 hover:text-pink-600">
-                  Jeans Donna
+                <Link href="/category/blazer-trench-cappotti" className="text-gray-700 hover:text-pink-600">
+                  Blazer/Trench/Cappotti
                 </Link>
-                <Link href="/category/giacche-donna" className="text-gray-700 hover:text-pink-600">
-                  Giacche Donna
+                <Link href="/category/camicie-tshirt-top" className="text-gray-700 hover:text-pink-600">
+                  Camicie/Tshirt/Top
                 </Link>
-                <Link href="/category/pantaloncini-donna" className="text-gray-700 hover:text-pink-600">
-                  Pantaloncini Donna
+                <Link href="/category/pantaloncini-gonne" className="text-gray-700 hover:text-pink-600">
+                  Pantaloncini/Gonne
                 </Link>
-                <Link href="/category/gonne-donna" className="text-gray-700 hover:text-pink-600">
-                  Gonne Donna
+                <Link href="/category/pantaloni-jeans" className="text-gray-700 hover:text-pink-600">
+                  Pantaloni/Jeans
+                </Link>
+                <Link href="/category/tute" className="text-gray-700 hover:text-pink-600">
+                  Tute
                 </Link>
               </div>
             </div>

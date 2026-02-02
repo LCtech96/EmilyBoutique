@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { supabase } from '@/lib/supabase'
 import NavigationBar from '@/components/NavigationBar'
 import AdminBanner from '@/components/AdminBanner'
+import HamburgerMenu from '@/components/HamburgerMenu'
 import { useAuthStore } from '@/store/authStore'
 
 interface Product {
@@ -21,6 +22,14 @@ interface Product {
 }
 
 const categoryMap: Record<string, string> = {
+  'nuovi-arrivi': 'Nuovi Arrivi',
+  'abiti-coordinati': 'Abiti/Coordinati',
+  'blazer-trench-cappotti': 'Blazer/Trench/Cappotti',
+  'camicie-tshirt-top': 'Camicie/Tshirt/Top',
+  'pantaloncini-gonne': 'Pantaloncini/Gonne',
+  'pantaloni-jeans': 'Pantaloni/Jeans',
+  'tute': 'Tute',
+  // Legacy categories (for backward compatibility)
   'accessori-donna': 'Accessori Donna',
   'jeans-donna': 'Jeans Donna',
   'giacche-donna': 'Giacche Donna',
@@ -65,6 +74,7 @@ export default function CategoryPage() {
   return (
     <div className={`min-h-screen ${isAdmin ? 'bg-red-50' : 'bg-gradient-to-b from-pink-50 to-pink-100'}`}>
       <AdminBanner />
+      <HamburgerMenu />
       
       <main className="pb-24 pt-12 px-4">
         <h1 className="text-3xl font-bold mb-6">{categoryName}</h1>

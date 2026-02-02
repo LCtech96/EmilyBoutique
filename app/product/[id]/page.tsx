@@ -12,6 +12,7 @@ import { supabase } from '@/lib/supabase'
 import { useCartStore } from '@/store/cartStore'
 import NavigationBar from '@/components/NavigationBar'
 import AdminBanner from '@/components/AdminBanner'
+import HamburgerMenu from '@/components/HamburgerMenu'
 import { useAuthStore } from '@/store/authStore'
 import { FiShoppingCart, FiArrowLeft } from 'react-icons/fi'
 
@@ -121,6 +122,7 @@ export default function ProductPage() {
   return (
     <div className={`min-h-screen ${isAdmin ? 'bg-red-50' : 'bg-gradient-to-b from-pink-50 to-pink-100'}`}>
       <AdminBanner />
+      <HamburgerMenu />
       
       <main className="pb-24">
         {/* Back Button */}
