@@ -14,15 +14,11 @@ const nextConfig = {
     unoptimized: false,
   },
   typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
+    // Allow production builds to complete even with type errors during development
     ignoreBuildErrors: false,
   },
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
+    // Allow production builds to complete even with ESLint errors during development
     ignoreDuringBuilds: false,
   },
 }
