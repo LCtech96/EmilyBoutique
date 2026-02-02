@@ -79,13 +79,22 @@ VALUES ('emilyboutique@arubapec.it', '123Emily!')
 ON CONFLICT (email) DO NOTHING;
 ```
 
-### Step 2: Crea Storage Bucket
+### Step 2: Crea Storage Bucket (Opzionale ma Consigliato)
+
+**IMPORTANTE:** Se il bucket non esiste, le immagini verranno salvate come base64 nel database. Questo funziona ma non è ottimale per le prestazioni.
+
+Per creare il bucket Storage:
 
 1. Vai a **Storage** nel menu laterale di Supabase
 2. Clicca su **New bucket**
 3. Nome: `images`
-4. Imposta come **Public bucket**
+4. Imposta come **Public bucket** (importante per permettere l'accesso pubblico alle immagini)
 5. Clicca **Create bucket**
+
+**Nota:** Se non crei il bucket, l'applicazione funzionerà comunque salvando le immagini come base64 nel database, ma:
+- Le immagini saranno più pesanti nel database
+- Le prestazioni potrebbero essere più lente
+- Si consiglia di creare il bucket per un uso ottimale
 
 ### Step 3: Configura RLS (Row Level Security)
 
