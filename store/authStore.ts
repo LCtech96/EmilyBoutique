@@ -23,7 +23,7 @@ export const useAuthStore = create<AuthStore>()(
     }),
     {
       name: 'emily-boutique-auth',
-      storage: createJSONStorage(() => localStorage),
+      storage: typeof window !== 'undefined' ? createJSONStorage(() => localStorage) : undefined,
     }
   )
 )

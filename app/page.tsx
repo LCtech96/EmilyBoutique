@@ -20,8 +20,8 @@ interface Product {
 }
 
 export default function Home() {
-  const [heroImage, setHeroImage] = useState<string>('/hero.jpg')
-  const [sponsors, setSponsors] = useState<string[]>(['/sponsor1.jpg', '/sponsor2.jpg', '/sponsor3.jpg'])
+  const [heroImage, setHeroImage] = useState<string>('')
+  const [sponsors, setSponsors] = useState<string[]>([])
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
   const { isAdmin } = useAuthStore()

@@ -73,7 +73,7 @@ export const useCartStore = create<CartStore>()(
     }),
     {
       name: 'emily-boutique-cart',
-      storage: createJSONStorage(() => localStorage),
+      storage: typeof window !== 'undefined' ? createJSONStorage(() => localStorage) : undefined,
     }
   )
 )
