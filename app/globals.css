@@ -65,10 +65,10 @@ body {
   right: 0;
   z-index: 1000;
   padding: 12px 0 max(12px, env(safe-area-inset-bottom));
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 182, 193, 0.8);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(255, 182, 193, 0.3);
 }
 
 .ios-nav-bar.admin {
