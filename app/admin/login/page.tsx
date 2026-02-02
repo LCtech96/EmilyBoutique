@@ -23,7 +23,7 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-pink-100 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-b from-red-50 to-red-100 flex items-center justify-center px-4">
       <div className="liquid-glass rounded-2xl p-8 w-full max-w-md">
         <h1 className="text-3xl font-bold text-center mb-6">Admin Login</h1>
         
@@ -56,7 +56,7 @@ export default function AdminLogin() {
 
           <button
             type="submit"
-            className="w-full py-3 bg-pink-500 text-white rounded-lg font-semibold hover:bg-pink-600 transition-colors"
+            className="w-full py-3 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 transition-colors"
           >
             Accedi
           </button>

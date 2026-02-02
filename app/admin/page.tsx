@@ -77,7 +77,7 @@ export default function AdminPage() {
     <div className="min-h-screen bg-red-50">
       <AdminBanner />
       
-      <main className="pb-24 pt-12 px-4">
+      <main className="pb-24 pt-16 px-4">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold">Pannello Admin</h1>
           <button

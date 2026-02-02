@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi'
 import { useAuthStore } from '@/store/authStore'
@@ -33,6 +34,19 @@ export default function HamburgerMenu() {
   const [isOpen, setIsOpen] = useState(false)
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null)
   const { isAdmin } = useAuthStore()
+  const pathname = usePathname()
+  
+  // Non mostrare il menu nelle pagine admin
+  useEffect(() => {
+    if (pathname?.startsWith('/admin')) {
+      setIsOpen(false)
+    }
+  }, [pathname])
+  
+  // Nascondi completamente il menu nelle pagine admin
+  if (pathname?.startsWith('/admin')) {
+    return null
+  }
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
