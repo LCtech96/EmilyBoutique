@@ -21,7 +21,7 @@ export default function MapsPage() {
             <div className="w-full h-full flex items-center justify-center bg-gray-200">
               <div className="text-center">
                 <p className="text-gray-600 mb-4">Mappa interattiva</p>
-                <p className="text-sm text-gray-500">Clicca su "Vieni a Trovarci" per aprire la posizione</p>
+                <p className="text-sm text-gray-500">Clicca su &quot;Vieni a Trovarci&quot; per aprire la posizione</p>
               </div>
             </div>
           </div>

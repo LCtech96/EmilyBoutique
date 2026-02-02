@@ -20,7 +20,7 @@ export default function AboutPage() {
           </p>
           <p className="text-gray-700 mb-4">
             Siamo specializzati in abbigliamento femminile di alta qualità, 
-            offrendo una vasta gamma di capi d'abbigliamento che vanno dagli 
+            offrendo una vasta gamma di capi d&apos;abbigliamento che vanno dagli 
             accessori ai jeans, dalle giacche ai pantaloncini e alle gonne.
           </p>
           <p className="text-gray-700">

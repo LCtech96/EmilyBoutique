@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { useAuthStore } from '@/store/authStore'
 import { supabase } from '@/lib/supabase'
 import NavigationBar from '@/components/NavigationBar'
@@ -148,10 +149,12 @@ export default function AdminPage() {
                   >
                     <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 bg-gradient-to-br from-pink-200 to-pink-300">
                       {product.images && product.images.length > 0 && product.images[0] ? (
-                        <img
+                        <Image
                           src={product.images[0]}
                           alt={product.title}
-                          className="w-full h-full object-cover"
+                          fill
+                          className="object-cover"
+                          unoptimized={product.images[0].startsWith('data:') || product.images[0].includes('supabase.co')}
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">
@@ -301,7 +304,13 @@ function HeroImageManager() {
       <h2 className="text-xl font-bold mb-4">Immagine Hero</h2>
       {heroImage && (
         <div className="relative w-full h-48 rounded-lg overflow-hidden mb-4">
-          <img src={heroImage} alt="Hero" className="w-full h-full object-cover" />
+          <Image
+            src={heroImage}
+            alt="Hero"
+            fill
+            className="object-cover"
+            unoptimized={heroImage.startsWith('data:') || heroImage.includes('supabase.co')}
+          />
         </div>
       )}
       <input
@@ -408,10 +417,12 @@ function SponsorImageManager() {
             <h3 className="font-bold mb-4">Sponsor {position}</h3>
             {sponsor?.image_url && (
               <div className="relative w-full h-32 rounded-lg overflow-hidden mb-4">
-                <img
+                <Image
                   src={sponsor.image_url}
                   alt={`Sponsor ${position}`}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  unoptimized={sponsor.image_url.startsWith('data:') || sponsor.image_url.includes('supabase.co')}
                 />
               </div>
             )}

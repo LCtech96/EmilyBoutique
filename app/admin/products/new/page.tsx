@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { useAuthStore } from '@/store/authStore'
 import { supabase } from '@/lib/supabase'
 import NavigationBar from '@/components/NavigationBar'
@@ -183,16 +184,18 @@ export default function NewProductPage() {
             {images.length > 0 && (
               <div className="grid grid-cols-3 gap-2 mt-4">
                 {images.map((url, index) => (
-                  <div key={index} className="relative">
-                    <img
+                  <div key={index} className="relative w-full h-24">
+                    <Image
                       src={url}
                       alt={`Image ${index + 1}`}
-                      className="w-full h-24 object-cover rounded-lg"
+                      fill
+                      className="object-cover rounded-lg"
+                      unoptimized={url.startsWith('data:') || url.includes('supabase.co')}
                     />
                     <button
                       type="button"
                       onClick={() => removeImage(index)}
-                      className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full"
+                      className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full z-10"
                     >
                       <FiX size={16} />
                     </button>
